@@ -126,6 +126,7 @@ nav a:hover {
 
 .btn-primary:hover {
     background: var(--accent-strong);
+    color: #ffffff;
     transform: translateY(-1px);
 }
 
@@ -190,6 +191,11 @@ section {
 .lead {
     font-size: 18px;
     color: #1f2937;
+}
+
+.impact {
+    font-size: 15px;
+    color: #334155;
 }
 
 .hero-actions {
@@ -321,6 +327,41 @@ footer {
     flex-wrap: wrap;
     gap: 16px;
     margin-top: 12px;
+}
+
+.scroll-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.scroll-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    background: var(--surface-muted);
+}
+
+.scroll-top__icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
 }
 
 .skip-link {

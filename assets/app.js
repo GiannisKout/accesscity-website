@@ -2,6 +2,7 @@ const toggle = document.getElementById("lang-toggle");
 const html = document.documentElement;
 const title = document.getElementById("page-title");
 const metaDescription = document.getElementById("meta-description");
+const scrollTopButton = document.getElementById("scroll-top");
 
 let currentLang = "el";
 
@@ -51,6 +52,27 @@ toggle.addEventListener("click", () => {
 });
 
 setLanguage(detectPreferredLanguage());
+
+if (scrollTopButton) {
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const toggleScrollTop = () => {
+        const shouldShow = window.scrollY > 480;
+        scrollTopButton.classList.toggle("is-visible", shouldShow);
+    };
+
+    toggleScrollTop();
+
+    window.addEventListener("scroll", toggleScrollTop, { passive: true });
+    scrollTopButton.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+    });
+}
 
 document.getElementById("copyright").textContent =
     "© " + new Date().getFullYear() + " AccessCity";
