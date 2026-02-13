@@ -99,19 +99,6 @@ SEO:
 - Canonical points to main domain
 - Structured data remains language neutral (brand-level)
 
-Important:
-If in the future you want maximum SEO power, the ideal setup is:
-
-- accesscity.gr/el/
-- accesscity.gr/en/
-
-For now, this single-page bilingual solution is clean, accessible and production-safe.
-
-## Analytics (Optional, Privacy-friendly)
-
-If you add analytics, prefer privacy-friendly tools (e.g. Plausible) and do not block content behind consent.
-
 ## Contact
 
-- Email: `info@accesscity.gr` (replace if different)
-- Press kit: `/assets/press-kit/` (optional)
+- Email: `info@accesscity.gr`
