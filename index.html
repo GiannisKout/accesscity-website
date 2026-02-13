@@ -14,6 +14,8 @@
       content="Το AccessCity μετατρέπει παρατηρήσεις σε δομημένα δεδομένα για πιο προσβάσιμες πόλεις."
     />
 
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+
     <link rel="canonical" href="https://accesscity.gr/" />
     <link rel="alternate" hreflang="el" href="https://accesscity.gr/?lang=el" />
     <link rel="alternate" hreflang="en" href="https://accesscity.gr/?lang=en" />
@@ -45,7 +47,10 @@
 
     <header id="top">
       <div class="wrap nav-bar">
-        <a class="brand" href="#top">AccessCity</a>
+        <a class="brand" href="#top" aria-label="AccessCity">
+          <img class="brand-mark" src="assets/logo.svg" alt="" />
+          <span class="brand-text">AccessCity</span>
+        </a>
         <nav aria-label="Main navigation">
           <a href="#about" data-el="Τι είναι" data-en="About">Τι είναι</a>
           <a href="#how" data-el="Πώς λειτουργεί" data-en="How it works">
@@ -330,7 +335,7 @@
         </ol>
       </section>
 
-      <section id="parters" aria-labelledby="partners-title">
+      <section id="partners" aria-labelledby="partners-title">
         <div class="callout">
           <p class="eyebrow" data-el="Για δήμους" data-en="For cities">
             Για δήμους
