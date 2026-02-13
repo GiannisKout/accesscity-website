@@ -113,5 +113,5 @@ If you add analytics, prefer privacy-friendly tools (e.g. Plausible) and do not 
 
 ## Contact
 
-- Email: `hello@accesscity.gr` (replace if different)
+- Email: `info@accesscity.gr` (replace if different)
 - Press kit: `/assets/press-kit/` (optional)
