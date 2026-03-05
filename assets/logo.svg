@@ -1,13 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#006cfc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Grid -->
-  <line x1="8" y1="20" x2="56" y2="20" />
-  <line x1="8" y1="32" x2="56" y2="32" />
-  <line x1="8" y1="44" x2="56" y2="44" />
-  <line x1="20" y1="8" x2="20" y2="56" />
-  <line x1="32" y1="8" x2="32" y2="56" />
-  <line x1="44" y1="8" x2="44" y2="56" />
-  <!-- Highlighted dot -->
-  <circle cx="44" cy="20" r="5" fill="#006cfc" stroke="none" />
-  <!-- Connection line -->
-  <path d="M44 25L44 42" stroke-width="2.5" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" role="img" aria-label="AccessCity logo">
+  <title>AccessCity</title>
+  <defs>
+    <clipPath id="pin-clip">
+      <path d="M100 5C55 5 18 42 18 87c0 39 20 71 47 91l35 47 35-47c27-20 47-52 47-91C182 42 145 5 100 5z"/>
+    </clipPath>
+  </defs>
+  <!-- Pin body -->
+  <path d="M100 5C55 5 18 42 18 87c0 39 20 71 47 91l35 47 35-47c27-20 47-52 47-91C182 42 145 5 100 5z" fill="#3B0DB5"/>
+  <!-- City street network clipped inside pin -->
+  <g clip-path="url(#pin-clip)" stroke="#F5A623" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main diagonal thoroughfare (SW → NE) -->
+    <path d="M18 148 L55 108 L95 72 L135 48 L182 38"/>
+    <!-- Secondary diagonal (lower, parallel) -->
+    <path d="M18 168 L48 138 L82 112 L120 88 L162 70 L182 65"/>
+    <!-- Upper cross road -->
+    <path d="M22 62 L72 54 L128 50 L182 56"/>
+    <!-- Mid cross road -->
+    <path d="M18 100 L60 94 L108 90 L155 94 L182 98"/>
+    <!-- Lower cross road -->
+    <path d="M30 158 L75 155 L122 155 L165 158"/>
+    <!-- Vertical connectors -->
+    <path d="M72 54 L60 94 L48 138 L42 175"/>
+    <path d="M128 50 L120 88 L118 155"/>
+    <!-- Short connectors between diagonals -->
+    <path d="M95 72 L82 112"/>
+    <path d="M135 48 L120 88"/>
+    <path d="M55 108 L48 138"/>
+    <!-- Additional density roads -->
+    <path d="M105 8 L108 90 L112 218"/>
+    <path d="M68 8 L60 94 L55 218"/>
+    <path d="M155 94 L165 158 L170 218"/>
+    <!-- Upper small connector -->
+    <path d="M60 94 L72 54"/>
+    <path d="M95 72 L108 90"/>
+  </g>
 </svg>

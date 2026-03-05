@@ -1,14 +1,14 @@
 :root {
-    --bg: #f4f7ff;
+    --bg: #f8f6ff;
     --surface: #ffffff;
-    --surface-muted: #f1f5ff;
+    --surface-muted: #f0ecff;
     --ink: #0b1220;
     --muted: #475569;
-    --accent: #006cfc;
-    --accent-strong: #0056d6;
-    --accent-soft: #d6e6ff;
-    --line: #e2e8f0;
-    --focus: #f59e0b;
+    --accent: #3b0db5;
+    --accent-strong: #2c0990;
+    --accent-soft: #ede8ff;
+    --line: #e2ddf5;
+    --focus: #f5a623;
     --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
     --font-body: "Source Sans 3", "Noto Sans", "Helvetica Neue", sans-serif;
     --font-display: "Fraunces", "Georgia", serif;
@@ -24,10 +24,10 @@ body {
     line-height: 1.65;
     background:
         radial-gradient(900px 500px at 12% -10%,
-            rgba(0, 108, 252, 0.16),
+            rgba(59, 13, 181, 0.14),
             transparent 60%),
         radial-gradient(700px 420px at 100% 0%,
-            rgba(0, 86, 214, 0.12),
+            rgba(44, 9, 144, 0.10),
             transparent 55%),
         var(--bg);
     color: var(--ink);
@@ -83,8 +83,8 @@ header {
 }
 
 .brand-mark {
-    width: 34px;
-    height: 34px;
+    width: 100px;
+    height: 100px;
     display: block;
 }
 
@@ -134,7 +134,7 @@ nav a:hover {
 .btn-primary {
     background: var(--accent);
     color: #ffffff;
-    box-shadow: 0 12px 24px rgba(15, 118, 110, 0.25);
+    box-shadow: 0 12px 24px rgba(59, 13, 181, 0.30);
 }
 
 .btn-primary:hover {
@@ -310,7 +310,7 @@ section {
     background: var(--accent-soft);
     border-radius: 20px;
     padding: 26px;
-    border: 1px solid rgba(15, 118, 110, 0.2);
+    border: 1px solid rgba(59, 13, 181, 0.18);
 }
 
 .callout.spaced {
