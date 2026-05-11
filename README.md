@@ -104,7 +104,7 @@ The production deployment workflow lives at `.github/workflows/deploy-production
 
 Server target:
 
-- remote directory: `public_html/`
+- remote directory: `accesscity.gr/public_html/`
 
 Production domain:
 
