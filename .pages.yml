@@ -13,8 +13,13 @@ content:
       field: create
     view:
       primary: titleEl
-      sort: publishDate
-      order: desc
+      fields:
+        - titleEl
+        - publishDate
+        - status
+      default:
+        sort: publishDate
+        order: desc
     fields:
       - name: slug
         label: Slug
@@ -117,5 +122,3 @@ content:
         type: text
         required: true
 
-settings:
-  merge: squash
