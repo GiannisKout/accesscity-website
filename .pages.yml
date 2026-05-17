@@ -106,8 +106,6 @@ content:
         label: Greek content
         description: Public-facing Greek content for this post. Before publishing, check accessibility basics: clear heading order, meaningful link text, alt text for images, and plain understandable language.
         type: object
-        collapsible:
-          collapsed: false
         fields:
           - name: title
             label: Title
@@ -143,8 +141,6 @@ content:
         label: English content
         description: Public-facing English content for this post. Before publishing, check accessibility basics: clear heading order, meaningful link text, alt text for images, and plain understandable language.
         type: object
-        collapsible:
-          collapsed: true
         fields:
           - name: title
             label: Title
