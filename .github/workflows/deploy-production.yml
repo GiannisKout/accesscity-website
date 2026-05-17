@@ -1,12 +1,13 @@
 name: Deploy Production
 
 on:
-  push:
+  workflow_run:
+    workflows:
+      - Build Check
+    types:
+      - completed
     branches:
       - main
-    paths:
-      - content/blog/**
-      - media/**
   workflow_dispatch:
     inputs:
       payload:
@@ -21,10 +22,13 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.ref }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
