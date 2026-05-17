@@ -37,7 +37,9 @@ canonicalUrl: https://accesscity.gr/blog
             </time>
           </div>
           <h2 class="blog-card__title" data-el="{{ post.titleEl }}" data-en="{{ post.titleEn }}">
-            {{ post.titleEl }}
+            <a href="blog/{{ post.slug }}.html" class="blog-card__title-link" data-el="{{ post.titleEl }}" data-en="{{ post.titleEn }}">
+              {{ post.titleEl }}
+            </a>
           </h2>
           <p class="blog-card__excerpt" data-el="{{ post.excerptEl }}" data-en="{{ post.excerptEn }}">
             {{ post.excerptEl }}
