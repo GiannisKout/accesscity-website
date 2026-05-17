@@ -32,7 +32,7 @@ content:
       - name: status
         label: Status
         type: select
-        description: Keep posts as Draft until they are ready to appear publicly.
+        description: Draft keeps the post hidden. Published makes it appear on the live blog listing.
         default: draft
         required: true
         options:
@@ -44,12 +44,12 @@ content:
       - name: publishDate
         label: Publish date
         type: date
-        description: The publication date used for sorting and display.
+        description: Controls display order on the blog. Newer dates appear first.
         required: true
       - name: categoryKey
         label: Category
         type: select
-        description: One shared category that is automatically shown in both languages.
+        description: Select one category once. It is mapped automatically to Greek and English labels.
         required: true
         default: updates
         options:
@@ -65,6 +65,7 @@ content:
       - name: tagStyle
         label: Tag style
         type: select
+        description: Internal visual style for the category badge.
         hidden: true
         default: default
         options:
@@ -76,6 +77,7 @@ content:
       - name: cardTheme
         label: Card theme
         type: select
+        description: Internal visual style for the blog card.
         hidden: true
         default: default
         options:
@@ -86,7 +88,7 @@ content:
               label: Alternate
       - name: greek
         label: Greek content
-        description: Fill in the Greek version shown on the site.
+        description: Public-facing Greek content for this post.
         type: object
         collapsible:
           collapsed: false
@@ -94,28 +96,28 @@ content:
           - name: title
             label: Title
             type: string
-            description: Main post title in Greek.
+            description: Main Greek headline shown on the card and post page.
             required: true
           - name: excerpt
             label: Excerpt
             type: text
-            description: Short summary used in the blog listing and previews.
+            description: Short summary for the blog card. Keep it concise (up to 280 characters).
             required: true
             options:
               maxlength: 280
           - name: seoTitle
             label: SEO title
             type: string
-            description: Optional. If empty, the post title is used.
+            description: Optional search title. If empty, the Greek title is used automatically.
           - name: seoDescription
             label: SEO description
             type: text
-            description: Optional. If empty, the excerpt is used.
+            description: Optional search summary. If empty, the Greek excerpt is used automatically.
             options:
               maxlength: 180
           - name: body
             label: Body
-            description: Use the toolbar for headings, links, lists, and emphasis.
+            description: Main Greek article content. Use Editor mode for visual editing or Source mode for Markdown.
             type: rich-text
             required: true
             options:
@@ -123,7 +125,7 @@ content:
               switcher: true
       - name: english
         label: English content
-        description: Fill in the English version shown on the site.
+        description: Public-facing English content for this post.
         type: object
         collapsible:
           collapsed: true
@@ -131,28 +133,28 @@ content:
           - name: title
             label: Title
             type: string
-            description: Main post title in English.
+            description: Main English headline shown on the card and post page.
             required: true
           - name: excerpt
             label: Excerpt
             type: text
-            description: Short summary used in the blog listing and previews.
+            description: Short summary for the blog card. Keep it concise (up to 280 characters).
             required: true
             options:
               maxlength: 280
           - name: seoTitle
             label: SEO title
             type: string
-            description: Optional. If empty, the post title is used.
+            description: Optional search title. If empty, the English title is used automatically.
           - name: seoDescription
             label: SEO description
             type: text
-            description: Optional. If empty, the excerpt is used.
+            description: Optional search summary. If empty, the English excerpt is used automatically.
             options:
               maxlength: 180
           - name: body
             label: Body
-            description: Use the toolbar for headings, links, lists, and emphasis.
+            description: Main English article content. Use Editor mode for visual editing or Source mode for Markdown.
             type: rich-text
             required: true
             options:
