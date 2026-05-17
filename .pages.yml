@@ -24,10 +24,13 @@ content:
       - name: slug
         label: Slug
         type: string
+        description: URL-safe name used in the blog post link, for example "city-access-audit".
         required: true
       - name: status
         label: Status
         type: select
+        description: Keep posts as Draft until they are ready to appear publicly.
+        default: draft
         required: true
         options:
           values:
@@ -38,26 +41,33 @@ content:
       - name: publishDate
         label: Publish date
         type: date
+        description: The publication date used for sorting and display.
         required: true
       - name: dateLabelEl
         label: Date label (Greek)
         type: string
+        description: Human-friendly Greek label, for example "Μάιος 2026".
         required: true
       - name: dateLabelEn
         label: Date label (English)
         type: string
+        description: Human-friendly English label, for example "May 2026".
         required: true
       - name: categoryEl
         label: Category (Greek)
         type: string
+        description: Short Greek category shown on the blog card.
         required: true
       - name: categoryEn
         label: Category (English)
         type: string
+        description: Short English category shown on the blog card.
         required: true
       - name: tagStyle
         label: Tag style
         type: select
+        hidden: true
+        default: default
         options:
           values:
             - name: default
@@ -67,6 +77,8 @@ content:
       - name: cardTheme
         label: Card theme
         type: select
+        hidden: true
+        default: default
         options:
           values:
             - name: default
@@ -76,48 +88,64 @@ content:
       - name: titleEl
         label: Title (Greek)
         type: string
+        description: Main post title in Greek.
         required: true
       - name: titleEn
         label: Title (English)
         type: string
+        description: Main post title in English.
         required: true
       - name: excerptEl
         label: Excerpt (Greek)
         type: text
+        description: Short summary used in the blog listing and previews.
         required: true
         options:
           maxlength: 280
       - name: excerptEn
         label: Excerpt (English)
         type: text
+        description: Short summary used in the blog listing and previews.
         required: true
         options:
           maxlength: 280
       - name: seoTitleEl
         label: SEO title (Greek)
         type: string
+        description: Search engine title in Greek. Keep it concise and clear.
         required: true
       - name: seoTitleEn
         label: SEO title (English)
         type: string
+        description: Search engine title in English. Keep it concise and clear.
         required: true
       - name: seoDescriptionEl
         label: SEO description (Greek)
         type: text
+        description: Search engine summary in Greek.
         required: true
         options:
           maxlength: 180
       - name: seoDescriptionEn
         label: SEO description (English)
         type: text
+        description: Search engine summary in English.
         required: true
         options:
           maxlength: 180
       - name: bodyEl
-        label: Body (Greek, Markdown)
-        type: text
+        label: Body (Greek)
+        description: Use the toolbar for headings, links, lists, emphasis, and pasted content.
+        type: rich-text
         required: true
+        options:
+          format: markdown
+          switcher: true
       - name: bodyEn
-        label: Body (English, Markdown)
-        type: text
+        label: Body (English)
+        description: Use the toolbar for headings, links, lists, emphasis, and pasted content.
+        type: rich-text
         required: true
+        options:
+          format: markdown
+          switcher: true
