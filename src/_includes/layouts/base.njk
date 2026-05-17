@@ -46,7 +46,7 @@
     </script>
   </head>
 
-  <body>
+  <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
     <a
       href="#main"
       class="skip-link"

@@ -54,9 +54,15 @@ header {
     top: 0;
     z-index: 10;
     backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.8);
+    background: #ffffff;
     border-bottom: 1px solid var(--line);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
     animation: navSlideDown 0.45s ease forwards;
+}
+
+body.page-post header {
+    position: static;
+    box-shadow: none;
 }
 
 .wrap {
