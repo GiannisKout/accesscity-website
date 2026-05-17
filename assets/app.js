@@ -32,7 +32,16 @@ function setLanguage(lang) {
     html.lang = lang;
 
     document.querySelectorAll("[data-el]").forEach((el) => {
-        el.textContent = el.getAttribute("data-" + lang);
+        const localizedValue = el.getAttribute("data-" + lang);
+        if (!localizedValue) return;
+
+        // Keep nested translatable markup intact (e.g. linked blog titles inside headings).
+        const hasTranslatableChild = Array.from(el.children).some((child) =>
+            child.hasAttribute("data-el")
+        );
+        if (hasTranslatableChild) return;
+
+        el.textContent = localizedValue;
     });
 
     document.querySelectorAll("[data-lang-block]").forEach((el) => {

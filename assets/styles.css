@@ -808,7 +808,7 @@ footer {
 }
 
 .blog-card__media {
-    height: 160px;
+    height: clamp(34px, 4vw, 52px);
     background: linear-gradient(135deg, var(--accent) 0%, #6d28d9 100%);
     position: relative;
     overflow: hidden;
@@ -834,7 +834,7 @@ footer {
 }
 
 .blog-card__body {
-    padding: 22px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     flex: 1;
