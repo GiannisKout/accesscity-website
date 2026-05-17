@@ -132,15 +132,38 @@ Blog content now lives in `content/blog/*.json` and is intended to be edited thr
 4. Save the entry so it writes back to `content/blog/<slug>.json`.
 5. Trigger the production deploy workflow, or run a local build first if you want to review the generated output.
 
+### Current blog entry model
+
 Each blog post entry includes:
 
-- slug and publish status
-- publish date and display labels in both languages
-- category labels in both languages
-- title, excerpt, SEO title, and SEO description in both languages
-- post body in Greek and English as Markdown
+- core fields: `slug`, `status`, `publishDate`, `categoryKey`
+- language groups: `greek` and `english`
+- per-language fields: `title`, `excerpt`, optional `seoTitle`, optional `seoDescription`, `body`
+- internal visual fields (`tagStyle`, `cardTheme`) that are hidden from normal editors in Pages CMS
 
-**Tip:** Keep headings hierarchical (`h1` once, then `h2`, then `h3`) and use valid Markdown in the blog body fields.
+### Editor behavior and fallbacks
+
+- body fields use the rich text editor and are saved as Markdown
+- if `seoTitle` is empty, the corresponding post title is used
+- if `seoDescription` is empty, the corresponding excerpt is used
+- category labels are derived from `categoryKey` for both languages
+- date labels are generated from `publishDate` when not explicitly present
+
+### Adding photos in a post
+
+1. Open the post in Pages CMS.
+2. In either body field (`greek.body` or `english.body`), keep **Editor** mode active.
+3. Insert an image from the editor controls and upload/select from `media/`.
+4. Save the post.
+
+Image links are saved in content and served from `/media/...`.
+
+### Authoring tips
+
+- Keep heading hierarchy clean (`h1` once on the page, then `h2`, then `h3`).
+- Write meaningful link text (avoid generic "click here").
+- Always add alt text for images.
+- Prefer clear, plain language.
 
 ## SEO Checklist (Production)
 
