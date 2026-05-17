@@ -1,6 +1,12 @@
 name: Deploy Production
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - content/blog/**
+      - media/**
   workflow_dispatch:
     inputs:
       payload:
