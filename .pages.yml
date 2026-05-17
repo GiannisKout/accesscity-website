@@ -88,7 +88,7 @@ content:
               label: Alternate
       - name: greek
         label: Greek content
-        description: Public-facing Greek content for this post.
+        description: Public-facing Greek content for this post. Before publishing, check accessibility basics: clear heading order, meaningful link text, alt text for images, and plain understandable language.
         type: object
         collapsible:
           collapsed: false
@@ -125,7 +125,7 @@ content:
               switcher: true
       - name: english
         label: English content
-        description: Public-facing English content for this post.
+        description: Public-facing English content for this post. Before publishing, check accessibility basics: clear heading order, meaningful link text, alt text for images, and plain understandable language.
         type: object
         collapsible:
           collapsed: true
