@@ -919,64 +919,128 @@ footer {
    BLOG — INDIVIDUAL POST PAGE
    ========================================== */
 
-.post-back {
+.post-page.wrap {
+    max-width: 920px;
+    padding-top: clamp(18px, 3vw, 32px);
+    padding-bottom: clamp(56px, 8vw, 92px);
+}
+
+.post-page .post-back {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-weight: 700;
     font-size: 15px;
     color: var(--accent);
     text-decoration: none;
-    margin-bottom: 28px;
-    transition: color 0.2s ease, transform 0.2s ease;
-    display: inline-block;
-}
-
-.post-back:hover {
-    color: var(--accent-strong);
-    transform: translateX(-3px);
-}
-
-.post-header {
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 36px;
-}
-
-.post-header h1 {
-    margin-top: 10px;
     margin-bottom: 16px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(59, 13, 181, 0.16);
+    transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
 }
 
-.post-meta {
+.post-page .post-back:hover {
+    color: var(--accent-strong);
+    background: #e8e1ff;
+    transform: translateX(-2px);
+}
+
+.post-page .post-article {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+    padding: clamp(20px, 4vw, 42px);
+}
+
+.post-page .post-header {
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 30px;
+}
+
+.post-page .post-header h1 {
+    margin-top: 14px;
+    margin-bottom: 0;
+    font-size: clamp(24px, 3.2vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.post-page .post-meta {
     display: flex;
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
 }
 
-.post-body {
-    max-width: 720px;
+.post-page .post-body {
+    max-width: 66ch;
 }
 
-.post-body p {
-    font-size: 17px;
-    line-height: 1.75;
-    color: #334155;
-    margin-bottom: 22px;
+.post-page .post-body p,
+.post-page .post-body li {
+    font-size: clamp(16px, 1.15vw, 19px);
+    line-height: 1.74;
+    color: #314156;
+    margin-bottom: 18px;
 }
 
-.post-body h2 {
-    margin-top: 40px;
-    margin-bottom: 12px;
+.post-page .post-body h2 {
+    margin-top: 36px;
+    margin-bottom: 14px;
+    font-size: clamp(24px, 2.6vw, 34px);
+    line-height: 1.24;
 }
 
-.post-body a {
+.post-page .post-body a {
     font-weight: 600;
 }
 
-.post-body strong {
+.post-page .post-body strong {
     color: var(--accent-strong);
+}
+
+.post-page .post-body ul,
+.post-page .post-body ol {
+    margin: 0 0 24px;
+    padding-left: 24px;
+}
+
+.post-page .post-body blockquote {
+    margin: 30px 0;
+    padding: 14px 18px;
+    border-left: 4px solid var(--accent);
+    background: #f7f3ff;
+    border-radius: 0 14px 14px 0;
+}
+
+.post-page .post-body img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 26px auto;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--surface-muted);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+}
+
+.post-page .post-body figure {
+    margin: 30px 0;
+}
+
+.post-page .post-body figcaption {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.post-page .post-body>[data-lang-block]>*:first-child {
+    margin-top: 0;
 }
 
 .post-photos {
@@ -1017,7 +1081,37 @@ footer {
         transform: none;
     }
 
-    .post-back:hover {
+    .post-page .post-back:hover {
         transform: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .post-page.wrap {
+        padding-top: 14px;
+    }
+
+    .post-page .post-article {
+        border-radius: 16px;
+        padding: 18px;
+    }
+
+    .post-page .post-header {
+        padding-bottom: 20px;
+        margin-bottom: 22px;
+    }
+
+    .post-page .post-body {
+        max-width: none;
+    }
+
+    .post-page .post-body p,
+    .post-page .post-body li {
+        font-size: 17px;
+    }
+
+    .post-page .post-body img {
+        margin: 20px auto;
+        border-radius: 12px;
     }
 }

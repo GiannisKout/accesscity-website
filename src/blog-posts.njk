@@ -14,12 +14,12 @@ eleventyComputed:
   pageDescriptionEn: "{{ post.seoDescriptionEn }}"
   canonicalUrl: "{{ site.url }}/blog/{{ post.slug }}"
 ---
-<main id="main" class="wrap" tabindex="-1">
+<main id="main" class="wrap post-page" tabindex="-1">
   <a href="../blog.html" class="post-back" data-el="{{ site.ui.backToNewsEl }}" data-en="{{ site.ui.backToNewsEn }}">
     {{ site.ui.backToNewsEl }}
   </a>
 
-  <article>
+  <article class="post-article">
     <header class="post-header">
       <div class="post-meta">
         <span class="blog-tag{% if post.tagStyle == 'announcement' %} blog-tag--announcement{% endif %}" data-el="{{ post.categoryEl }}" data-en="{{ post.categoryEn }}">
