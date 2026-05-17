@@ -27,7 +27,7 @@ content:
     format: json
     filename:
       template: "{slug}.json"
-      field: create
+      field: false
     view:
       primary: greek.title
       fields:
