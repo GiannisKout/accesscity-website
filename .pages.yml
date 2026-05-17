@@ -23,6 +23,7 @@ content:
     label: Blog posts
     type: collection
     path: content/blog
+    subfolders: false
     format: json
     filename:
       template: "{slug}.json"
