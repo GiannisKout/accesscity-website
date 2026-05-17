@@ -2,11 +2,10 @@
   "slug": "launch",
   "status": "published",
   "publishDate": "2025-01-01",
+  "categoryKey": "announcement",
   "tagStyle": "announcement",
   "cardTheme": "alt",
   "greek": {
-    "dateLabel": "Ιανουάριος 2025",
-    "category": "Ανακοίνωση",
     "title": "Ξεκινάμε",
     "excerpt": "Ανοίγουμε ένα νέο κεφάλαιο στην αστική προσβασιμότητα. Το AccessCity είναι εδώ για να μετατρέπει παρατηρήσεις σε δομημένα δεδομένα που αλλάζουν πόλεις — σε συνεργασία με πολίτες, δήμους και φορείς.",
     "seoTitle": "Ξεκινάμε — AccessCity Νέα & Ενημερώσεις",
@@ -14,8 +13,6 @@
     "body": "Ανοίγουμε ένα νέο κεφάλαιο στην αστική προσβασιμότητα. Το AccessCity είναι εδώ για να μετατρέπει παρατηρήσεις της καθημερινότητας σε δομημένα δεδομένα που αλλάζουν πόλεις.\n\nΤα προβλήματα αστικής προσβασιμότητας είναι συχνά αόρατα: σπασμένα πεζοδρόμια, ελλείψεις ραμπών, στενές είσοδοι, απότομα πεζοδρόμια. Αφορούν εκατομμύρια ανθρώπους — ΑμεΑ, ηλικιωμένους, γονείς με καρότσια — αλλά σπάνια τεκμηριώνονται με τρόπο που να οδηγεί σε δράση.\n\nΤο AccessCity αλλάζει αυτό. Συλλέγουμε δεδομένα δομημένα, κατηγοριοποιημένα και γεωεντοπισμένα — σε συνεργασία με πολίτες, δήμους και φορείς — ώστε κάθε παρατήρηση να γίνεται αφετηρία για βελτίωση.\n\nΔεν κάνουμε απλώς καταγγελίες. Δημιουργούμε μια κοινή γλώσσα για την προσβασιμότητα.\n\n[Θέλεις να συνεργαστείς; Επικοινώνησε μαζί μας →](../index.html#contact)"
   },
   "english": {
-    "dateLabel": "January 2025",
-    "category": "Announcement",
     "title": "We're launching",
     "excerpt": "We're opening a new chapter in urban accessibility. AccessCity is here to turn everyday observations into structured data that changes cities — in collaboration with citizens, municipalities, and organizations.",
     "seoTitle": "We're Launching — AccessCity News & Updates",

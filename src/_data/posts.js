@@ -2,6 +2,25 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const postsDirectory = path.join(process.cwd(), "content", "blog");
+const categoryLabels = {
+    announcement: {
+        el: "Ανακοίνωση",
+        en: "Announcement",
+    },
+    partnerships: {
+        el: "Συνεργασίες",
+        en: "Partnerships",
+    },
+    updates: {
+        el: "Ενημερώσεις",
+        en: "Updates",
+    },
+    events: {
+        el: "Εκδηλώσεις",
+        en: "Events",
+    },
+};
+
 const requiredPostFields = [
     ["slug"],
     ["status"],
@@ -30,6 +49,31 @@ function readRequiredString(entry, fieldPaths, filename, label, trimValue = true
     throw new Error(`Missing required field \"${label}\" in ${filename}`);
 }
 
+function readOptionalString(entry, fieldPaths, trimValue = true) {
+    for (const fieldPath of fieldPaths) {
+        const value = getValueAtPath(entry, fieldPath);
+
+        if (typeof value === "string" && value.trim() !== "") {
+            return trimValue ? value.trim() : value;
+        }
+    }
+
+    return "";
+}
+
+function formatDateLabel(dateString, locale) {
+    const parsedDate = new Date(dateString);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+        return dateString;
+    }
+
+    return new Intl.DateTimeFormat(locale, {
+        month: "long",
+        year: "numeric",
+    }).format(parsedDate);
+}
+
 module.exports = function () {
     if (!fs.existsSync(postsDirectory)) {
         return [];
@@ -56,22 +100,31 @@ module.exports = function () {
 
             seenSlugs.add(slug);
 
+            const publishDate = readRequiredString(entry, [["publishDate"]], filename, "publishDate");
+            const titleEl = readRequiredString(entry, [["greek", "title"], ["titleEl"]], filename, "greek.title");
+            const titleEn = readRequiredString(entry, [["english", "title"], ["titleEn"]], filename, "english.title");
+            const excerptEl = readRequiredString(entry, [["greek", "excerpt"], ["excerptEl"]], filename, "greek.excerpt");
+            const excerptEn = readRequiredString(entry, [["english", "excerpt"], ["excerptEn"]], filename, "english.excerpt");
+
+            const categoryKey = readOptionalString(entry, [["categoryKey"]]).toLowerCase();
+            const categoryFromKey = categoryLabels[categoryKey];
+
             return {
                 slug,
                 status: readRequiredString(entry, [["status"]], filename, "status").toLowerCase(),
-                publishDate: readRequiredString(entry, [["publishDate"]], filename, "publishDate"),
-                dateLabelEl: readRequiredString(entry, [["greek", "dateLabel"], ["dateLabelEl"]], filename, "greek.dateLabel"),
-                dateLabelEn: readRequiredString(entry, [["english", "dateLabel"], ["dateLabelEn"]], filename, "english.dateLabel"),
-                categoryEl: readRequiredString(entry, [["greek", "category"], ["categoryEl"]], filename, "greek.category"),
-                categoryEn: readRequiredString(entry, [["english", "category"], ["categoryEn"]], filename, "english.category"),
-                titleEl: readRequiredString(entry, [["greek", "title"], ["titleEl"]], filename, "greek.title"),
-                titleEn: readRequiredString(entry, [["english", "title"], ["titleEn"]], filename, "english.title"),
-                excerptEl: readRequiredString(entry, [["greek", "excerpt"], ["excerptEl"]], filename, "greek.excerpt"),
-                excerptEn: readRequiredString(entry, [["english", "excerpt"], ["excerptEn"]], filename, "english.excerpt"),
-                seoTitleEl: readRequiredString(entry, [["greek", "seoTitle"], ["seoTitleEl"]], filename, "greek.seoTitle"),
-                seoTitleEn: readRequiredString(entry, [["english", "seoTitle"], ["seoTitleEn"]], filename, "english.seoTitle"),
-                seoDescriptionEl: readRequiredString(entry, [["greek", "seoDescription"], ["seoDescriptionEl"]], filename, "greek.seoDescription"),
-                seoDescriptionEn: readRequiredString(entry, [["english", "seoDescription"], ["seoDescriptionEn"]], filename, "english.seoDescription"),
+                publishDate,
+                dateLabelEl: readOptionalString(entry, [["greek", "dateLabel"], ["dateLabelEl"]]) || formatDateLabel(publishDate, "el-GR"),
+                dateLabelEn: readOptionalString(entry, [["english", "dateLabel"], ["dateLabelEn"]]) || formatDateLabel(publishDate, "en-US"),
+                categoryEl: categoryFromKey?.el || readRequiredString(entry, [["greek", "category"], ["categoryEl"]], filename, "greek.category"),
+                categoryEn: categoryFromKey?.en || readRequiredString(entry, [["english", "category"], ["categoryEn"]], filename, "english.category"),
+                titleEl,
+                titleEn,
+                excerptEl,
+                excerptEn,
+                seoTitleEl: readOptionalString(entry, [["greek", "seoTitle"], ["seoTitleEl"]]) || `${titleEl} - AccessCity`,
+                seoTitleEn: readOptionalString(entry, [["english", "seoTitle"], ["seoTitleEn"]]) || `${titleEn} - AccessCity`,
+                seoDescriptionEl: readOptionalString(entry, [["greek", "seoDescription"], ["seoDescriptionEl"]]) || excerptEl,
+                seoDescriptionEn: readOptionalString(entry, [["english", "seoDescription"], ["seoDescriptionEn"]]) || excerptEn,
                 bodyEl: readRequiredString(entry, [["greek", "body"], ["bodyEl"]], filename, "greek.body", false),
                 bodyEn: readRequiredString(entry, [["english", "body"], ["bodyEn"]], filename, "english.body", false),
                 tagStyle: ((entry.tagStyle || "default") + "").trim(),

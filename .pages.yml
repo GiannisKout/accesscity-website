@@ -25,6 +25,9 @@ content:
         label: Slug
         type: string
         description: URL-safe name used in the blog post link, for example "city-access-audit".
+        pattern:
+          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          message: Use lowercase letters, numbers, and hyphens only.
         required: true
       - name: status
         label: Status
@@ -43,6 +46,22 @@ content:
         type: date
         description: The publication date used for sorting and display.
         required: true
+      - name: categoryKey
+        label: Category
+        type: select
+        description: One shared category that is automatically shown in both languages.
+        required: true
+        default: updates
+        options:
+          values:
+            - name: announcement
+              label: Announcement / Ανακοίνωση
+            - name: partnerships
+              label: Partnerships / Συνεργασίες
+            - name: updates
+              label: Updates / Ενημερώσεις
+            - name: events
+              label: Events / Εκδηλώσεις
       - name: tagStyle
         label: Tag style
         type: select
@@ -72,16 +91,6 @@ content:
         collapsible:
           collapsed: false
         fields:
-          - name: dateLabel
-            label: Date label
-            type: string
-            description: Human-friendly Greek date, for example "Μάιος 2026".
-            required: true
-          - name: category
-            label: Category
-            type: string
-            description: Short Greek category shown on the blog card.
-            required: true
           - name: title
             label: Title
             type: string
@@ -97,13 +106,11 @@ content:
           - name: seoTitle
             label: SEO title
             type: string
-            description: Search engine title in Greek.
-            required: true
+            description: Optional. If empty, the post title is used.
           - name: seoDescription
             label: SEO description
             type: text
-            description: Search engine summary in Greek.
-            required: true
+            description: Optional. If empty, the excerpt is used.
             options:
               maxlength: 180
           - name: body
@@ -121,16 +128,6 @@ content:
         collapsible:
           collapsed: true
         fields:
-          - name: dateLabel
-            label: Date label
-            type: string
-            description: Human-friendly English date, for example "May 2026".
-            required: true
-          - name: category
-            label: Category
-            type: string
-            description: Short English category shown on the blog card.
-            required: true
           - name: title
             label: Title
             type: string
@@ -146,13 +143,11 @@ content:
           - name: seoTitle
             label: SEO title
             type: string
-            description: Search engine title in English.
-            required: true
+            description: Optional. If empty, the post title is used.
           - name: seoDescription
             label: SEO description
             type: text
-            description: Search engine summary in English.
-            required: true
+            description: Optional. If empty, the excerpt is used.
             options:
               maxlength: 180
           - name: body
