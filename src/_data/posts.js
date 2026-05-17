@@ -2,34 +2,32 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const postsDirectory = path.join(process.cwd(), "content", "blog");
-const requiredFields = [
-    "slug",
-    "status",
-    "publishDate",
-    "dateLabelEl",
-    "dateLabelEn",
-    "categoryEl",
-    "categoryEn",
-    "titleEl",
-    "titleEn",
-    "excerptEl",
-    "excerptEn",
-    "seoTitleEl",
-    "seoTitleEn",
-    "seoDescriptionEl",
-    "seoDescriptionEn",
-    "bodyEl",
-    "bodyEn",
+const requiredPostFields = [
+    ["slug"],
+    ["status"],
+    ["publishDate"],
 ];
 
-function assertField(entry, fieldName, filename) {
-    const value = entry[fieldName];
+function getValueAtPath(entry, fieldPath) {
+    return fieldPath.reduce((currentValue, segment) => {
+        if (currentValue == null || typeof currentValue !== "object") {
+            return undefined;
+        }
 
-    if (typeof value !== "string" || value.trim() === "") {
-        throw new Error(`Missing required field \"${fieldName}\" in ${filename}`);
+        return currentValue[segment];
+    }, entry);
+}
+
+function readRequiredString(entry, fieldPaths, filename, label, trimValue = true) {
+    for (const fieldPath of fieldPaths) {
+        const value = getValueAtPath(entry, fieldPath);
+
+        if (typeof value === "string" && value.trim() !== "") {
+            return trimValue ? value.trim() : value;
+        }
     }
 
-    return value.trim();
+    throw new Error(`Missing required field \"${label}\" in ${filename}`);
 }
 
 module.exports = function () {
@@ -46,11 +44,11 @@ module.exports = function () {
             const filePath = path.join(postsDirectory, filename);
             const entry = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
-            for (const fieldName of requiredFields) {
-                assertField(entry, fieldName, filename);
+            for (const fieldPath of requiredPostFields) {
+                readRequiredString(entry, [fieldPath], filename, fieldPath.join("."));
             }
 
-            const slug = entry.slug.trim();
+            const slug = readRequiredString(entry, [["slug"]], filename, "slug");
 
             if (seenSlugs.has(slug)) {
                 throw new Error(`Duplicate blog slug \"${slug}\" in ${filename}`);
@@ -60,24 +58,24 @@ module.exports = function () {
 
             return {
                 slug,
-                status: entry.status.trim().toLowerCase(),
-                publishDate: entry.publishDate.trim(),
-                dateLabelEl: entry.dateLabelEl.trim(),
-                dateLabelEn: entry.dateLabelEn.trim(),
-                categoryEl: entry.categoryEl.trim(),
-                categoryEn: entry.categoryEn.trim(),
-                titleEl: entry.titleEl.trim(),
-                titleEn: entry.titleEn.trim(),
-                excerptEl: entry.excerptEl.trim(),
-                excerptEn: entry.excerptEn.trim(),
-                seoTitleEl: entry.seoTitleEl.trim(),
-                seoTitleEn: entry.seoTitleEn.trim(),
-                seoDescriptionEl: entry.seoDescriptionEl.trim(),
-                seoDescriptionEn: entry.seoDescriptionEn.trim(),
-                bodyEl: entry.bodyEl,
-                bodyEn: entry.bodyEn,
-                tagStyle: (entry.tagStyle || "default").trim(),
-                cardTheme: (entry.cardTheme || "default").trim(),
+                status: readRequiredString(entry, [["status"]], filename, "status").toLowerCase(),
+                publishDate: readRequiredString(entry, [["publishDate"]], filename, "publishDate"),
+                dateLabelEl: readRequiredString(entry, [["greek", "dateLabel"], ["dateLabelEl"]], filename, "greek.dateLabel"),
+                dateLabelEn: readRequiredString(entry, [["english", "dateLabel"], ["dateLabelEn"]], filename, "english.dateLabel"),
+                categoryEl: readRequiredString(entry, [["greek", "category"], ["categoryEl"]], filename, "greek.category"),
+                categoryEn: readRequiredString(entry, [["english", "category"], ["categoryEn"]], filename, "english.category"),
+                titleEl: readRequiredString(entry, [["greek", "title"], ["titleEl"]], filename, "greek.title"),
+                titleEn: readRequiredString(entry, [["english", "title"], ["titleEn"]], filename, "english.title"),
+                excerptEl: readRequiredString(entry, [["greek", "excerpt"], ["excerptEl"]], filename, "greek.excerpt"),
+                excerptEn: readRequiredString(entry, [["english", "excerpt"], ["excerptEn"]], filename, "english.excerpt"),
+                seoTitleEl: readRequiredString(entry, [["greek", "seoTitle"], ["seoTitleEl"]], filename, "greek.seoTitle"),
+                seoTitleEn: readRequiredString(entry, [["english", "seoTitle"], ["seoTitleEn"]], filename, "english.seoTitle"),
+                seoDescriptionEl: readRequiredString(entry, [["greek", "seoDescription"], ["seoDescriptionEl"]], filename, "greek.seoDescription"),
+                seoDescriptionEn: readRequiredString(entry, [["english", "seoDescription"], ["seoDescriptionEn"]], filename, "english.seoDescription"),
+                bodyEl: readRequiredString(entry, [["greek", "body"], ["bodyEl"]], filename, "greek.body", false),
+                bodyEn: readRequiredString(entry, [["english", "body"], ["bodyEn"]], filename, "english.body", false),
+                tagStyle: ((entry.tagStyle || "default") + "").trim(),
+                cardTheme: ((entry.cardTheme || "default") + "").trim(),
             };
         })
         .sort((left, right) => {
