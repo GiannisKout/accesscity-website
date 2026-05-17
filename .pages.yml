@@ -2,6 +2,22 @@ media:
   input: media
   output: /media
 
+actions:
+  - name: build-site
+    label: Build check
+    workflow: build-check.yml
+    confirm:
+      title: Run build check?
+      message: This runs a full install and static build on the current branch.
+      button: Run build
+  - name: deploy-production
+    label: Deploy production
+    workflow: deploy-production.yml
+    confirm:
+      title: Deploy to production?
+      message: This publishes the current branch build to accesscity.gr.
+      button: Deploy now
+
 content:
   - name: blog
     label: Blog posts

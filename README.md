@@ -82,11 +82,25 @@ If your SiteGround account requires FTPS-only configuration later, update the wo
 
 #### Trigger Options
 
-The workflow supports one production trigger:
+The production workflow supports one trigger:
 
 - manual deploy through GitHub Actions `workflow_dispatch`
 
 There is also a local Mac trigger script at `./deploy-production.command`.
+
+### CMS Actions
+
+Pages CMS is configured with two repository-level actions in `.pages.yml`:
+
+- `Build check` → triggers `.github/workflows/build-check.yml`
+- `Deploy production` → triggers `.github/workflows/deploy-production.yml`
+
+Both actions are available from the **Actions** area in Pages CMS.
+
+Recommended usage:
+
+1. Run **Build check** after editing content.
+2. If it passes and content is approved, run **Deploy production**.
 
 #### Local Mac Deploy Script
 
@@ -131,6 +145,8 @@ Blog content now lives in `content/blog/*.json` and is intended to be edited thr
 3. Create or edit a post entry.
 4. Save the entry so it writes back to `content/blog/<slug>.json`.
 5. Trigger the production deploy workflow, or run a local build first if you want to review the generated output.
+
+You can also run **Build check** and **Deploy production** directly from the Pages CMS **Actions** panel.
 
 ### Current blog entry model
 

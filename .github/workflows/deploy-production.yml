@@ -2,6 +2,11 @@ name: Deploy Production
 
 on:
   workflow_dispatch:
+    inputs:
+      payload:
+        description: "Pages CMS action payload (optional)"
+        required: false
+        type: string
 
 concurrency:
   group: production-deploy
