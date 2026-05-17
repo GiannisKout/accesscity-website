@@ -35,6 +35,10 @@ function setLanguage(lang) {
         el.textContent = el.getAttribute("data-" + lang);
     });
 
+    document.querySelectorAll("[data-lang-block]").forEach((el) => {
+        el.hidden = el.getAttribute("data-lang-block") !== lang;
+    });
+
     const pageStrings = window.PAGE_LANG_STRINGS && window.PAGE_LANG_STRINGS[lang];
 
     if (lang === "el") {

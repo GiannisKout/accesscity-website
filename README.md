@@ -15,24 +15,34 @@ Preliminary static website for AccessCity, focused on:
 
 ## Tech
 
-- Pure **HTML** + **CSS** (inline in `index.html` for simplicity)
-- No build step required
+- Static site with **HTML**, **CSS**, and a small **Eleventy** build for the blog
+- Blog content stored as structured JSON files under `content/blog/`
+- Blog editing configured for **Pages CMS** via `.pages.yml`
 
 ## Project Structure
 
 - `index.html` — the landing page
-- (optional) `robots.txt`
-- (optional) `sitemap.xml`
-- (optional) `assets/` — logos, social preview image, press kit PDFs, etc.
+- `assets/` — logos, styles, scripts, and shared assets
+- `content/blog/` — structured blog post entries
+- `src/` — Eleventy templates and generated blog sources
+- `.pages.yml` — Pages CMS configuration for browser-based blog editing
+- `dist/` — generated build output used for deployment
 
 ## Local Preview
 
-Just open the file in a browser:
+For the landing page only, you can still open `index.html` directly in a browser.
 
-- macOS: double click `index.html`
-- or use a tiny local server (recommended so URLs behave like production):
-  - `python3 -m http.server 5173`
-  - then visit `http://localhost:5173`
+For the full site, including the generated blog:
+
+- `npm install`
+- `npm run build`
+- open `dist/index.html` in a browser
+
+For local development with a preview server:
+
+- `npm start`
+
+- Eleventy will serve the generated site locally.
 
 ## Deployment
 
@@ -47,10 +57,8 @@ Production deploys are automated with a GitHub Actions workflow that uploads the
 
 Files deployed to production:
 
-- `index.html`
-- `robots.txt`
-- `sitemap.xml`
-- `assets/`
+- generated `dist/` output
+- includes `index.html`, `blog.html`, `blog/*.html`, `robots.txt`, `sitemap.xml`, `assets/`, and `media/`
 
 Files excluded from deployment:
 
@@ -112,16 +120,27 @@ Production domain:
 
 ## Editing Content
 
-Open `index.html` and edit the text within sections:
+Landing page content still lives in `index.html`.
 
-- Hero
-- Mission / How it works
-- Who it helps
-- Get involved
-- FAQ
-- Contact
+Blog content now lives in `content/blog/*.json` and is intended to be edited through Pages CMS.
 
-**Tip:** Keep headings hierarchical (`h1` once, then `h2`, then `h3`) and avoid skipping levels.
+### Blog editor workflow
+
+1. Open the hosted Pages CMS app and connect this repository.
+2. Use the `Blog posts` collection defined in `.pages.yml`.
+3. Create or edit a post entry.
+4. Save the entry so it writes back to `content/blog/<slug>.json`.
+5. Trigger the production deploy workflow, or run a local build first if you want to review the generated output.
+
+Each blog post entry includes:
+
+- slug and publish status
+- publish date and display labels in both languages
+- category labels in both languages
+- title, excerpt, SEO title, and SEO description in both languages
+- post body in Greek and English as Markdown
+
+**Tip:** Keep headings hierarchical (`h1` once, then `h2`, then `h3`) and use valid Markdown in the blog body fields.
 
 ## SEO Checklist (Production)
 

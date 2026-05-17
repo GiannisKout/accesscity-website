@@ -1,0 +1,121 @@
+media:
+  input: media
+  output: /media
+
+content:
+  - name: blog
+    label: Blog posts
+    type: collection
+    path: content/blog
+    format: json
+    filename:
+      template: "{slug}.json"
+      field: create
+    view:
+      primary: titleEl
+      sort: publishDate
+      order: desc
+    fields:
+      - name: slug
+        label: Slug
+        type: string
+        required: true
+      - name: status
+        label: Status
+        type: select
+        required: true
+        options:
+          values:
+            - name: draft
+              label: Draft
+            - name: published
+              label: Published
+      - name: publishDate
+        label: Publish date
+        type: date
+        required: true
+      - name: dateLabelEl
+        label: Date label (Greek)
+        type: string
+        required: true
+      - name: dateLabelEn
+        label: Date label (English)
+        type: string
+        required: true
+      - name: categoryEl
+        label: Category (Greek)
+        type: string
+        required: true
+      - name: categoryEn
+        label: Category (English)
+        type: string
+        required: true
+      - name: tagStyle
+        label: Tag style
+        type: select
+        options:
+          values:
+            - name: default
+              label: Default
+            - name: announcement
+              label: Announcement
+      - name: cardTheme
+        label: Card theme
+        type: select
+        options:
+          values:
+            - name: default
+              label: Default
+            - name: alt
+              label: Alternate
+      - name: titleEl
+        label: Title (Greek)
+        type: string
+        required: true
+      - name: titleEn
+        label: Title (English)
+        type: string
+        required: true
+      - name: excerptEl
+        label: Excerpt (Greek)
+        type: text
+        required: true
+        options:
+          maxlength: 280
+      - name: excerptEn
+        label: Excerpt (English)
+        type: text
+        required: true
+        options:
+          maxlength: 280
+      - name: seoTitleEl
+        label: SEO title (Greek)
+        type: string
+        required: true
+      - name: seoTitleEn
+        label: SEO title (English)
+        type: string
+        required: true
+      - name: seoDescriptionEl
+        label: SEO description (Greek)
+        type: text
+        required: true
+        options:
+          maxlength: 180
+      - name: seoDescriptionEn
+        label: SEO description (English)
+        type: text
+        required: true
+        options:
+          maxlength: 180
+      - name: bodyEl
+        label: Body (Greek, Markdown)
+        type: text
+        required: true
+      - name: bodyEn
+        label: Body (English, Markdown)
+        type: text
+        required: true
+
+settings:
+  merge: squash
